@@ -15,14 +15,31 @@ assessmentButton.onclick = () => {//functionと同じ　アロー
 
     //診断結果表示エリアの作成
     resultDivided.innerText = '';//resultDiviedというdiv要素内の子要素を全削除する　ボタンを連打すると結果が増えるの阻止
-    const header = document.createElement('h3');//h3要素を作成
-    header.innerText = '診断結果';//h3に中身を入れる
-    resultDivided.appendChild(header);//resultDividedはdiv要素のid、そこに子要素としてheaderを追加する
+    
+  // headerDivided の作成
+  const headerDivided = document.createElement('div');
+  headerDivided.setAttribute('class', 'card-header');
+  headerDivided.innerText = '診断結果';
 
-    const paragraph = document.createElement('p');
-    const result = assessment(userName);
-    paragraph.innerText = result;
-    resultDivided.appendChild(paragraph);
+  // bodyDivided の作成
+  const bodyDivided = document.createElement('div');
+  bodyDivided.setAttribute('class', 'card-body');
+
+  const paragraph = document.createElement('p');
+  paragraph.setAttribute('class', 'card-text');
+  const result = assessment(userName);
+  paragraph.innerText = result;
+  bodyDivided.appendChild(paragraph);
+
+  // resultDivided に Bootstrap のスタイルを適用する
+  resultDivided.setAttribute('class', 'card');
+  resultDivided.setAttribute('style', 'max-width: 700px;')
+
+  // headerDivided と bodyDivided を resultDivided に差し込む
+  resultDivided.appendChild(headerDivided);
+  resultDivided.appendChild(bodyDivided);
+
+  // ツイートエリアの作成
 
     //TODOツイートエリアの作成
     tweetDivided.innerText = '';
